@@ -17,7 +17,6 @@ Este proyecto tiene como objetivo principal **ubicar y señalar mediante puntos 
 
 - GPS/Mapas (Google Maps, OpenStreetMap, etc.)
 - Software de visualización geográfica (QGIS, Leaflet, u otros)
-- Markdown / Documentación colaborativa
 
 ## Autor
 
