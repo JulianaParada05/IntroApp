@@ -16,7 +16,7 @@ Este proyecto tiene como objetivo principal **ubicar y señalar mediante puntos 
 ## Herramientas utilizadas
 
 - GPS/Mapas (Google Maps, OpenStreetMap, etc.)
-- Software de visualización geográfica (QGIS, Leaflet, u otros)
+- Software de visualización geográfica (Leaflet, entre otros)
 
 ## Autor
 
