@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,17 +13,63 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- Estilos personalizados -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
   <style>
     body {
+      background-color: #fff8e1;
+      font-family: 'Merriweather', serif;
+      color: #333;
       padding: 20px;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      color: #bf360c;
+      margin-bottom: 1.5rem;
     }
 
     #map {
       height: 400px;
       margin-bottom: 30px;
-      border: 2px solid #ccc;
+      border: 3px solid #ffe0b2;
       border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #5d4037;
+    }
+
+    .form-control {
+      border-radius: 6px;
+      border-color: #ffcc80;
+    }
+
+    .btn-primary {
+      background-color: #ffb74d;
+      border-color: #ffa726;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background-color: #ffa726;
+      border-color: #fb8c00;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ff9800;
+      box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding: 10px;
+      }
     }
   </style>
 </head>
@@ -33,7 +80,7 @@
 
   <!-- Formulario -->
   <div id="Formulario" class="container">
-    <h2 class="mb-4">Registrar Falla de Luminaria</h2>
+    <h2>Registrar Falla de Luminaria</h2>
     <form action="" method="post">
       <div class="mb-3">
         <label for="fecha" class="form-label">Fecha</label>
@@ -74,16 +121,36 @@
     const lat = 4.659531842345665;
     const lng = -74.12237397495753;
 
-    const map = L.map('map').setView([lat, lng], 16); // Zoom nivel 16
+    const map = L.map('map').setView([lat, lng], 17);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    // Marcador central
     L.marker([lat, lng])
       .addTo(map)
-      .bindPopup("Ubicación de falla registrada.")
+      .bindPopup("Ubicación central de falla.")
       .openPopup();
+
+    // Coordenadas del polígono
+    const polygonCoords = [
+      [4.6600817932108525, -74.1236267291251],
+      [4.662030834940146, -74.1215135383078],
+      [4.659984378266335, -74.11917281151531],
+      [4.657785025895005, -74.1214054574384],
+      [4.6600817932108525, -74.1236267291251] // mismo punto inicial para cerrar
+    ];
+
+    // Polígono
+    const area = L.polygon(polygonCoords, {
+      color: "#ff9800",
+      fillColor: "#fff3e0",
+      fillOpacity: 0.5,
+      weight: 2
+    }).addTo(map);
+
+    area.bindPopup("Área crítica de iluminación reportada");
   </script>
 
 </body>
